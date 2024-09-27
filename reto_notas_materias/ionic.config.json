@@ -1,0 +1,7 @@
+{
+  "name": "reto_notas_materias",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular-standalone"
+}

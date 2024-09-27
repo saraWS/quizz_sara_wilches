@@ -1,0 +1,60 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>Detalles de la Materia</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" class="ion-padding">
+  <form (ngSubmit)="modificarMateria()">
+    <ion-item>
+      <ion-label position="floating">Nombre de la Materia</ion-label>
+      <ion-input [(ngModel)]="materia.nombre" name="nombre" required></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Semestre</ion-label>
+      <ion-select [(ngModel)]="materia.semestre" name="semestre" required>
+        <ion-select-option *ngFor="let sem of [1, 2, 3, 4, 5, 6, 7, 8, 9]" [value]="sem">
+          {{ sem }}
+        </ion-select-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Código</ion-label>
+      <ion-input [(ngModel)]="materia.codigo" name="codigo" required></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Horario</ion-label>
+      <ion-input [(ngModel)]="materia.horario" name="horario" required></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Observaciones</ion-label>
+      <ion-textarea [(ngModel)]="materia.observaciones" name="observaciones"></ion-textarea>
+    </ion-item>
+
+    <ion-button expand="block" type="submit">Guardar Cambios</ion-button>
+    <ion-button expand="block" [routerLink]="['/home']">Volver</ion-button>
+  </form><!-- Botón para Agregar Notas -->
+  <ion-button expand="block" color="secondary" (click)="agregarNotas()">Agregar Notas</ion-button>
+
+  <!-- Mostrar Notas (Opcional) -->
+  <div *ngIf="materia.notas && materia.notas.length > 0" class="ion-margin-top">
+    <h3>Notas:</h3>
+    <ion-list>
+      <ion-item *ngFor="let nota of materia.notas">
+        <ion-label>
+          <p><strong>Fecha de Entrega:</strong> {{ nota.fechaEntrega }}</p>
+          <p><strong>Descripción:</strong> {{ nota.descripcion }}</p>
+          <p><strong>Nota 1 (20%):</strong> {{ nota.nota1 }}</p>
+          <p><strong>Nota 2 (20%):</strong> {{ nota.nota2 }}</p>
+          <p><strong>Nota 3 (20%):</strong> {{ nota.nota3 }}</p>
+          <p><strong>Nota Final (40%):</strong> {{ nota.notaFinal }}</p>
+          <p><strong>Observaciones:</strong> {{ nota.observaciones }}</p>
+        </ion-label>
+      </ion-item>
+    </ion-list>
+  </div>
+</ion-content>

@@ -1,0 +1,39 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>
+      Bienvenido :D jijijijiji
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">Bienvenido</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <div id="container" class="ion-padding">
+    <h2>Hola Usuario, aquí puedes registrar tus materias y notas</h2>
+    <p>Selecciona la ubicación semestral</p>
+    <ion-select placeholder="Seleccionar semestre">
+      <ion-select-option *ngFor="let semestre of [1, 2, 3, 4, 5, 6, 7, 8, 9]" [value]="semestre">
+        {{ semestre }}
+      </ion-select-option>
+    </ion-select>
+    <ion-button expand="block" (click)="registrarMaterias()">Registrar Materias</ion-button>
+
+    <h2>Materias Registradas:</h2>
+    <ion-list>
+      <ion-item *ngFor="let materia of materias" (click)="verDetalles(materia)">
+        <ion-label>
+          <h3>{{ materia.nombre }}</h3>
+          <p>Semestre: {{ materia.semestre }}</p>
+          <p>Código: {{ materia.codigo }}</p>
+          <p>Horario: {{ materia.horario }}</p>
+          <p>Observaciones: {{ materia.observaciones }}</p>
+        </ion-label>
+      </ion-item>
+    </ion-list>
+  </div>
+</ion-content>

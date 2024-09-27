@@ -1,0 +1,47 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>Agregar Notas</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" class="ion-padding">
+  <form (ngSubmit)="agregarNotas()">
+    <ion-item>
+      <ion-label position="floating">Fecha de Entrega</ion-label>
+      <ion-datetime displayFormat="DD/MM/YYYY" [(ngModel)]="nota.fechaEntrega" name="fechaEntrega" required></ion-datetime>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Descripción</ion-label>
+      <ion-input [(ngModel)]="nota.descripcion" name="descripcion" required></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Nota 1 (20%)</ion-label>
+      <ion-input type="number" min="0" max="5" step="0.1" [(ngModel)]="nota.nota1" name="nota1"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Nota 2 (20%)</ion-label>
+      <ion-input type="number" min="0" max="5" step="0.1" [(ngModel)]="nota.nota2" name="nota2"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Nota 3 (20%)</ion-label>
+      <ion-input type="number" min="0" max="5" step="0.1" [(ngModel)]="nota.nota3" name="nota3"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Nota Final (40%)</ion-label>
+      <ion-input type="number" min="0" max="5" step="0.1" [(ngModel)]="nota.notaFinal" name="notaFinal"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Observaciones</ion-label>
+      <ion-textarea [(ngModel)]="nota.observaciones" name="observaciones"></ion-textarea>
+    </ion-item>
+
+    <ion-button expand="block" type="submit">Agregar Notas</ion-button>
+    <ion-button expand="block" (click)="volver()">Volver</ion-button>
+  </form>
+</ion-content>
