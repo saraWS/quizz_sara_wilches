@@ -6,11 +6,11 @@
 
 <ion-content [fullscreen]="true" class="ion-padding">
   <form (ngSubmit)="modificarMateria()">
+    <!-- Formulario para modificar materia -->
     <ion-item>
       <ion-label position="floating">Nombre de la Materia</ion-label>
       <ion-input [(ngModel)]="materia.nombre" name="nombre" required></ion-input>
     </ion-item>
-
     <ion-item>
       <ion-label position="floating">Semestre</ion-label>
       <ion-select [(ngModel)]="materia.semestre" name="semestre" required>
@@ -19,26 +19,28 @@
         </ion-select-option>
       </ion-select>
     </ion-item>
-
     <ion-item>
       <ion-label position="floating">Código</ion-label>
       <ion-input [(ngModel)]="materia.codigo" name="codigo" required></ion-input>
     </ion-item>
-
     <ion-item>
       <ion-label position="floating">Horario</ion-label>
       <ion-input [(ngModel)]="materia.horario" name="horario" required></ion-input>
     </ion-item>
-
     <ion-item>
       <ion-label position="floating">Observaciones</ion-label>
       <ion-textarea [(ngModel)]="materia.observaciones" name="observaciones"></ion-textarea>
     </ion-item>
-
     <ion-button expand="block" type="submit">Guardar Cambios</ion-button>
     <ion-button expand="block" [routerLink]="['/home']">Volver</ion-button>
-  </form><!-- Botón para Agregar Notas -->
+  </form>
+  
   <ion-button expand="block" color="secondary" (click)="agregarNotas()">Agregar Notas</ion-button>
+
+  <!-- Mostrar Promedio -->
+  <ion-item *ngIf="promedio !== null">
+    <ion-label>Promedio: {{ promedio.toFixed(2) }}</ion-label>
+  </ion-item>
 
   <!-- Mostrar Notas (Opcional) -->
   <div *ngIf="materia.notas && materia.notas.length > 0" class="ion-margin-top">

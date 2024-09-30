@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { IonContent, IonHeader, IonTitle, IonToolbar, IonItem, IonLabel, IonInput, IonSelect, IonSelectOption, IonTextarea, IonButton } from '@ionic/angular/standalone';
+import { IonContent, IonHeader, IonTitle, IonToolbar, IonItem, IonLabel, IonInput, IonSelect, IonSelectOption, IonTextarea, IonButton, IonText } from '@ionic/angular/standalone';
 import { RouterModule } from '@angular/router';
 
 @Component({
@@ -9,7 +9,7 @@ import { RouterModule } from '@angular/router';
   templateUrl: './registrar-materias.page.html',
   styleUrls: ['./registrar-materias.page.scss'],
   standalone: true,
-  imports: [
+  imports: [IonText, 
     CommonModule,
     FormsModule,
     RouterModule,

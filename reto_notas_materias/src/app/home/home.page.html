@@ -25,15 +25,20 @@
 
     <h2>Materias Registradas:</h2>
     <ion-list>
-      <ion-item *ngFor="let materia of materias" (click)="verDetalles(materia)">
-        <ion-label>
+      <ion-item *ngFor="let materia of materias">
+        <ion-label (click)="verDetalles(materia)">
           <h3>{{ materia.nombre }}</h3>
           <p>Semestre: {{ materia.semestre }}</p>
           <p>Código: {{ materia.codigo }}</p>
           <p>Horario: {{ materia.horario }}</p>
           <p>Observaciones: {{ materia.observaciones }}</p>
         </ion-label>
+        <!-- Botón de eliminar -->
+        <ion-button color="danger" (click)="eliminarMateria(materia)">
+          Eliminar
+        </ion-button>
       </ion-item>
     </ion-list>
+    
   </div>
 </ion-content>

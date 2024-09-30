@@ -38,4 +38,22 @@ export class HomePage {
       state: { materia } // Pasamos la materia seleccionada a la nueva página
     });
   }
+
+  eliminarMateria(materia: any) {
+    // Verificar si la materia tiene notas registradas
+    if (materia.notas && materia.notas.length > 0) {
+      alert("No se puede eliminar la materia porque tiene notas registradas.");
+    } else {
+      // Confirmación antes de eliminar
+      if (confirm(`¿Estás seguro de que deseas eliminar la materia ${materia.nombre}?`)) {
+        // Eliminar la materia del arreglo
+        this.materias = this.materias.filter(m => m.codigo !== materia.codigo);
+        
+        // Actualizar el localStorage
+        localStorage.setItem('materias', JSON.stringify(this.materias));
+
+        alert("Materia eliminada exitosamente.");
+      }
+    }
+  }
 }

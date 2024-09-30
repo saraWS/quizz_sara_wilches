@@ -36,6 +36,8 @@ export class AgregarNotasPage implements OnInit {
     notaFinal: 0,
     observaciones: ''
   };
+promedio: number | null = null;  // Para almacenar el promedio
+  notasGuardadas: boolean = false;  // Para indicar si las notas han sido guardadas
 
   constructor(private router: Router) {
     // Recuperar el estado pasado

@@ -13,12 +13,25 @@ import { Router, RouterModule } from '@angular/router';
 })
 export class MateriaDetallePage {
   materia: any;
+  promedio: number | null = null;
 
   constructor(private router: Router) {
     // Recuperar el estado pasado
     const navigation = this.router.getCurrentNavigation();
     if (navigation && navigation.extras.state) {
       this.materia = navigation.extras.state['materia']; // Acceso usando corchetes
+      this.calcularPromedio(); // Calcular promedio al cargar la materia
+    }
+  }
+
+  calcularPromedio() {
+    if (this.materia.notas && this.materia.notas.length > 0) {
+      const totalNotas = this.materia.notas.reduce((acc: number, nota: any) => {
+        return acc + (nota.nota1 * 0.2) + (nota.nota2 * 0.2) + (nota.nota3 * 0.2) + (nota.notaFinal * 0.4);
+      }, 0);
+      this.promedio = totalNotas / this.materia.notas.length; // Promedio de todas las notas
+    } else {
+      this.promedio = null; // Sin notas, no hay promedio
     }
   }
 
@@ -32,7 +45,8 @@ export class MateriaDetallePage {
     }
     this.router.navigate(['/home']); // Redirigir a la página principal
   }
-  agregarNotas(){
+  
+  agregarNotas() {
     this.router.navigate(['/agregar-notas'], {
       state: { materia: this.materia }
     });
