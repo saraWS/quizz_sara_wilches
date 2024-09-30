@@ -46,7 +46,7 @@
   <div *ngIf="materia.notas && materia.notas.length > 0" class="ion-margin-top">
     <h3>Notas:</h3>
     <ion-list>
-      <ion-item *ngFor="let nota of materia.notas">
+      <ion-item *ngFor="let nota of materia.notas; let i = index">
         <ion-label>
           <p><strong>Fecha de Entrega:</strong> {{ nota.fechaEntrega }}</p>
           <p><strong>Descripción:</strong> {{ nota.descripcion }}</p>
@@ -56,6 +56,9 @@
           <p><strong>Nota Final (40%):</strong> {{ nota.notaFinal }}</p>
           <p><strong>Observaciones:</strong> {{ nota.observaciones }}</p>
         </ion-label>
+        <ion-button color="danger" expand="block" (click)="eliminarNota(i)">
+          Eliminar
+        </ion-button>
       </ion-item>
     </ion-list>
   </div>

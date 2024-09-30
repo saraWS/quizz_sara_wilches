@@ -21,8 +21,18 @@ export class MateriaDetallePage {
     if (navigation && navigation.extras.state) {
       this.materia = navigation.extras.state['materia']; // Acceso usando corchetes
       this.calcularPromedio(); // Calcular promedio al cargar la materia
+    }else {
+      // En caso de que no se pase la materia en el estado de la navegación, cargar desde localStorage
+      this.cargarMateria('codigo-de-la-materia'); // Aquí deberías pasar el código de la materia deseada
     }
   }
+
+   cargarMateria(codigo: string) {
+    const materias = JSON.parse(localStorage.getItem('materias') || '[]');
+    this.materia = materias.find((m: any) => m.codigo === codigo);
+    this.calcularPromedio(); // Calcular promedio al cargar la materia
+  }
+  
 
   calcularPromedio() {
     if (this.materia.notas && this.materia.notas.length > 0) {
@@ -45,10 +55,24 @@ export class MateriaDetallePage {
     }
     this.router.navigate(['/home']); // Redirigir a la página principal
   }
-  
-  agregarNotas() {
+  agregarNotas(){
     this.router.navigate(['/agregar-notas'], {
       state: { materia: this.materia }
     });
+  }
+  
+  eliminarNota(index: number) {
+    this.materia.notas.splice(index, 1); // Eliminar la nota
+    this.calcularPromedio(); // Recalcular promedio después de eliminar
+    this.actualizarMaterias(); // Actualizar en localStorage
+  }
+
+  actualizarMaterias() {
+    const materias = JSON.parse(localStorage.getItem('materias') || '[]');
+    const index = materias.findIndex((m: any) => m.codigo === this.materia.codigo);
+    if (index !== -1) {
+      materias[index] = this.materia;
+      localStorage.setItem('materias', JSON.stringify(materias));
+    }
   }
 }
