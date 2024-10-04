@@ -109,13 +109,23 @@ export class AgregarNotasPage {
   calcularPromedio() {
     if (this.materia.notas && this.materia.notas.length > 0) {
       const totalNotas = this.materia.notas.reduce((acc: number, nota: any) => {
-        return acc + (nota.corte1 * 0.2) + (nota.corte2 * 0.2) + (nota.corte3 * 0.2) + (nota.corteFinal * 0.4);
+        // Asegurarse de que las notas tengan valores numéricos válidos o 0
+        const corte1 = nota.corte1 || 0;
+        const corte2 = nota.corte2 || 0;
+        const corte3 = nota.corte3 || 0;
+        const corteFinal = nota.corteFinal || 0;
+  
+        // Sumar las notas ponderadas
+        return acc + (corte1 * 0.2) + (corte2 * 0.2) + (corte3 * 0.2) + (corteFinal * 0.4);
       }, 0);
+      
+      // Calcular el promedio dividiendo por la cantidad de notas
       this.promedio = totalNotas / this.materia.notas.length;
     } else {
-      this.promedio = null;
+      this.promedio = null; // No hay notas, no hay promedio
     }
   }
+  
 
   volver() {
     this.router.navigate(['/materia-detalle'], {

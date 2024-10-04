@@ -38,13 +38,19 @@ export class MateriaDetallePage {
   calcularPromedio() {
     if (this.materia.notas && this.materia.notas.length > 0) {
       const totalNotas = this.materia.notas.reduce((acc: number, nota: any) => {
-        return acc + (nota.nota1 * 0.2) + (nota.nota2 * 0.2) + (nota.nota3 * 0.2) + (nota.notaFinal * 0.4);
+        const corte1 = nota.corte1 || 0;
+        const corte2 = nota.corte2 || 0;
+        const corte3 = nota.corte3 || 0;
+        const corteFinal = nota.corteFinal || 0;
+  
+        return acc + (corte1 * 0.2) + (corte2 * 0.2) + (corte3 * 0.2) + (corteFinal * 0.4);
       }, 0);
-      this.promedio = totalNotas / this.materia.notas.length; // Promedio de todas las notas
+      this.promedio = totalNotas / this.materia.notas.length;
     } else {
-      this.promedio = null; // Sin notas, no hay promedio
+      this.promedio = null;
     }
   }
+  
 
   modificarMateria() {
     // Lógica para modificar la materia y guardar los cambios
