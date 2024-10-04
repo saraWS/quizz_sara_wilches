@@ -16,29 +16,34 @@
   <div id="container" class="ion-padding">
     <h2>Hola Usuario, aquí puedes registrar tus materias y notas</h2>
     <p>Selecciona la ubicación semestral</p>
-    <ion-select placeholder="Seleccionar semestre">
+    
+    <ion-select placeholder="Seleccionar semestre" [(ngModel)]="semestreSeleccionado">
+      <ion-select-option value="0">Todos</ion-select-option> <!-- Opción Todos -->
       <ion-select-option *ngFor="let semestre of [1, 2, 3, 4, 5, 6, 7, 8, 9]" [value]="semestre">
         {{ semestre }}
       </ion-select-option>
     </ion-select>
+    
     <ion-button expand="block" (click)="registrarMaterias()">Registrar Materias</ion-button>
 
+    
     <h2>Materias Registradas:</h2>
-    <ion-list>
-      <ion-item *ngFor="let materia of materias">
-        <ion-label (click)="verDetalles(materia)">
-          <h3>{{ materia.nombre }}</h3>
-          <p>Semestre: {{ materia.semestre }}</p>
-          <p>Código: {{ materia.codigo }}</p>
-          <p>Horario: {{ materia.horario }}</p>
-          <p>Observaciones: {{ materia.observaciones }}</p>
-        </ion-label>
-        <!-- Botón de eliminar -->
-        <ion-button color="danger" (click)="eliminarMateria(materia)">
-          Eliminar
-        </ion-button>
-      </ion-item>
-    </ion-list>
+    <div class="materias-list-container"> <!-- Este div envuelve la lista -->
+      <ion-list>
+        <ion-item *ngFor="let materia of obtenerMateriasFiltradas()">
+          <ion-label (click)="verDetalles(materia)">
+            <h3>{{ materia.nombre }}</h3>
+            <p>Semestre: {{ materia.semestre }}</p>
+            <p>Código: {{ materia.codigo }}</p>
+            <p>Horario: {{ materia.horario }}</p>
+            <p>Observaciones: {{ materia.observaciones }}</p>
+          </ion-label>
+          <ion-button color="danger" (click)="eliminarMateria(materia)">
+            Eliminar
+          </ion-button>
+        </ion-item>
+      </ion-list>
+    </div> <!-- Asegúrate de que este div esté correctamente cerrado -->
     
   </div>
 </ion-content>

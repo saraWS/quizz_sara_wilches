@@ -25,3 +25,10 @@
 #container a {
   text-decoration: none;
 }
+
+.materias-list-container {
+  max-height: 300px; /* Ajusta esta altura según tus necesidades */
+  overflow-y: auto;
+  border: 1px solid #ccc; /* (Opcional) Agrega un borde para destacar la lista */
+  padding: 10px; /* (Opcional) Un poco de padding */
+}
