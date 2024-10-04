@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { IonContent, IonHeader, IonTitle, IonToolbar, IonButton, IonItem, IonLabel, IonInput, IonSelect, IonSelectOption, IonTextarea, IonDatetime } from '@ionic/angular/standalone';
+import { IonContent, IonHeader, IonTitle, IonToolbar, IonButton, IonItem, IonLabel, IonInput, IonSelect, IonSelectOption, IonTextarea, IonDatetime, IonButtons, IonMenuButton } from '@ionic/angular/standalone';
 import { Router, RouterModule } from '@angular/router';
 
 @Component({
@@ -23,7 +23,9 @@ import { Router, RouterModule } from '@angular/router';
     IonSelectOption,
     IonTextarea,
     IonDatetime,
-    IonButton]
+    IonButton, 
+    IonButtons, 
+    IonMenuButton]
 })
 
 

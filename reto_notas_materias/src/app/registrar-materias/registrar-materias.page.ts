@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { IonContent, IonHeader, IonTitle, IonToolbar, IonItem, IonLabel, IonInput, IonSelect, IonSelectOption, IonTextarea, IonButton, IonText } from '@ionic/angular/standalone';
+import { IonContent, IonHeader, IonTitle, IonToolbar, IonItem, IonLabel, IonInput, IonSelect, IonSelectOption, IonTextarea, IonButton, IonText, IonButtons, IonMenuButton } from '@ionic/angular/standalone';
 import { RouterModule, Router } from '@angular/router';
 
 @Component({
@@ -23,7 +23,9 @@ import { RouterModule, Router } from '@angular/router';
     IonSelect,
     IonSelectOption,
     IonTextarea,
-    IonButton],
+    IonButton, 
+    IonButtons, 
+    IonMenuButton],
 })
 export class RegistrarMateriasPage implements OnInit {
   // Propiedades para capturar los datos del formulario
