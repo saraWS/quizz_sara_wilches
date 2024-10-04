@@ -51,11 +51,19 @@ export class AgregarNotasPage {
   agregarNotas() {
     // Validación del rango de las notas
     const { corte1, corte2, corte3, corteFinal } = this.nota;
+    
+    // Asignar 0 a las notas si no se ingresan
+    const notaCorte1 = corte1 || 0;
+    const notaCorte2 = corte2 || 0;
+    const notaCorte3 = corte3 || 0;
+    const notaCorteFinal = corteFinal || 0;
+  
+    // Validar que las notas estén en el rango de 0 a 50
     if (
-      corte1 < 0 || corte1 > 50 ||
-      corte2 < 0 || corte2 > 50 ||
-      corte3 < 0 || corte3 > 50 ||
-      corteFinal < 0 || corteFinal > 50
+      notaCorte1 < 0 || notaCorte1 > 50 ||
+      notaCorte2 < 0 || notaCorte2 > 50 ||
+      notaCorte3 < 0 || notaCorte3 > 50 ||
+      notaCorteFinal < 0 || notaCorteFinal > 50
     ) {
       alert("Por favor, ingresa notas válidas entre 0 y 50.");
       return;
@@ -67,18 +75,20 @@ export class AgregarNotasPage {
         this.materia.notas = [];
       }
   
+      // Crear la nueva nota con los valores
       const nuevaNota = {
         fechaEntrega: this.nota.fechaEntrega,
         descripcion: this.nota.descripcion,
-        corte1: this.nota.corte1 || 0,
-        corte2: this.nota.corte2 || 0,
-        corte3: this.nota.corte3 || 0,
-        corteFinal: this.nota.corteFinal || 0,
-        observaciones: this.nota.observaciones || ''
+        corte1: notaCorte1,  // Se usa la nota ya validada o asignada como 0
+        corte2: notaCorte2,
+        corte3: notaCorte3,
+        corteFinal: notaCorteFinal,
+        observaciones: this.nota.observaciones || ''  // Si no hay observaciones, será una cadena vacía
       };
   
       this.materia.notas.push(nuevaNota);
   
+      // Guardar la materia actualizada en localStorage
       const materias = JSON.parse(localStorage.getItem('materias') || '[]');
       const index = materias.findIndex((m: any) => m.codigo === this.materia.codigo);
       if (index !== -1) {
@@ -86,6 +96,7 @@ export class AgregarNotasPage {
         localStorage.setItem('materias', JSON.stringify(materias));
       }
   
+      // Redirigir a la página de detalles de la materia
       this.router.navigate(['/materia-detalle'], {
         state: { materia: this.materia }
       });
