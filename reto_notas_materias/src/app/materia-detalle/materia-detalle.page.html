@@ -50,10 +50,10 @@
         <ion-label>
           <p><strong>Fecha de Entrega:</strong> {{ nota.fechaEntrega }}</p>
           <p><strong>Descripción:</strong> {{ nota.descripcion }}</p>
-          <p><strong>Nota 1 (20%):</strong> {{ nota.nota1 }}</p>
-          <p><strong>Nota 2 (20%):</strong> {{ nota.nota2 }}</p>
-          <p><strong>Nota 3 (20%):</strong> {{ nota.nota3 }}</p>
-          <p><strong>Nota Final (40%):</strong> {{ nota.notaFinal }}</p>
+          <p><strong>Nota 1 (20%):</strong> {{ nota.corte1 }}</p>
+          <p><strong>Nota 2 (20%):</strong> {{ nota.corte2 }}</p>
+          <p><strong>Nota 3 (20%):</strong> {{ nota.corte3 }}</p>
+          <p><strong>Nota Final (40%):</strong> {{ nota.corteFinal }}</p>
           <p><strong>Observaciones:</strong> {{ nota.observaciones }}</p>
         </ion-label>
         <ion-button color="danger" expand="block" (click)="eliminarNota(i)">
